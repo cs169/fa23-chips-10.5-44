@@ -1,0 +1,20 @@
+project:
+  name: 'CS169-fa23-44'
+  owner: 'fa23'
+  teamId: '44'
+  identities: {}
+  notifications:
+    email: 'rhona_huang@berkeley.edu'
+  members:
+    member1:
+      name: 'Rhona'
+      surname: 'Huang' 
+      githubUsername: 'rhona-huang'
+    member2:
+      name: 'Alex'
+      surname: 'Toumayan' 
+      githubUsername: 'AlexToumayan'
+    member3:
+      name: 'Ashley'
+      surname: 'Bui' 
+      githubUsername: 'ashleygbui'
