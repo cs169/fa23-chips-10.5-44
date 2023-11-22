@@ -16,22 +16,25 @@ class Representative < ApplicationRecord
           ocdid_temp = office.division_id
         end
       end
-      
-      rep_params = {}
-      rep_params[:name] = official.name ? official.name : ''
-      rep_params[:ocdid] = ocdid_temp ? ocdid_temp : ''
-      rep_params[:title] = title_temp ? title_temp : ''
-      rep_params[:address_street] = official.address.line1 ? official.address.line1 : ''
-      rep_params[:address_city] = official.address.city ? official.address.city : ''
-      rep_params[:address_state] = official.address.state ? official.address.state : ''
-      rep_params[:address_zip] = official.address.zip ? official.address.zip : ''
-      rep_params[:political_party] = official.party ? official.party : ''
-      rep_params[:photo_url] = official.photoUrl ? official.photoUrl : ''
-
+      rep_params = parse_civic_api_response(official)
+      rep_params[:ocdid] = ocdid_temp
+      rep_params[:title] = title_temp
       rep = Representative.create!(rep_params)
       reps.push(rep)
     end
 
     reps
+  end
+
+  def parse_civic_api_response(official)
+    rep_params = {}
+    rep_params[:name] = official.name
+    rep_params[:address_street] = official.address.line1 || ''
+    rep_params[:address_city] = official.address.city || ''
+    rep_params[:address_state] = official.address.state || ''
+    rep_params[:address_zip] = official.address.zip || ''
+    rep_params[:political_party] = official.party || ''
+    rep_params[:photo_url] = official.photoUrl || ''
+    rep_params
   end
 end
