@@ -1,0 +1,30 @@
+<h1><%= @representative.name %></h1>
+
+<h3>OCD ID</h3>
+<p>
+  <%= @representative.ocdid %>
+</p>
+
+<h3> Office </h3>
+<p>
+  <%= @representative.title %>
+</p>
+
+<h3> Address </h3>
+<p><%= @representative.address_street %></p>
+<p><%= @representative.address_city %></p>
+<p><%= @representative.address_state %></p>
+<p><%= @representative.address_zip %></p>
+
+
+<h3> Political Party </h3>
+<p>
+  <%= @representative.political_party %>
+</p>
+
+<h3> Photo </h3>
+<% if @representative.photo_url.present? %>
+  <%= image_tag @representative.photo_url, alt: 'Image' %>
+<% else %>
+  <p>Picture Not Found</p>
+<% end %>
