@@ -1,5 +1,4 @@
-<h1><%= @representative.name %></h1>
-
+ <h1><%= @representative.name %></h1>
 <h3>OCD ID</h3>
 <p>
   <%= @representative.ocdid %>
@@ -12,10 +11,7 @@
 
 <h3> Address </h3>
 <p><%= @representative.address_street %></p>
-<p><%= @representative.address_city %></p>
-<p><%= @representative.address_state %></p>
-<p><%= @representative.address_zip %></p>
-
+<p><%= @representative.address_city %>, <%= @representative.address_state %>, <%= @representative.address_zip %></p>
 
 <h3> Political Party </h3>
 <p>

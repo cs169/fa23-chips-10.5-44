@@ -7,34 +7,45 @@ class Representative < ApplicationRecord
     reps = []
 
     rep_info.officials.each_with_index do |official, index|
-      ocdid_temp = ''
-      title_temp = ''
+      ocdid_temp, title_temp = find_ocdid_and_title(rep_info, index)
 
-      rep_info.offices.each do |office|
-        if office.official_indices.include? index
-          title_temp = office.name
-          ocdid_temp = office.division_id
-        end
+      rep = Representative.find_by(name: official.name)
+      rep_params = parse_civic_api_response(official, ocdid_temp, title_temp)
+      if rep.nil?
+        rep = Representative.create!(rep_params)
+      else
+        rep.update(rep_params)
       end
-      rep_params = parse_civic_api_response(official)
-      rep_params[:ocdid] = ocdid_temp
-      rep_params[:title] = title_temp
-      rep = Representative.create!(rep_params)
       reps.push(rep)
     end
-
     reps
   end
 
-  def parse_civic_api_response(official)
-    rep_params = {}
-    rep_params[:name] = official.name
-    rep_params[:address_street] = official.address.line1 || ''
-    rep_params[:address_city] = official.address.city || ''
-    rep_params[:address_state] = official.address.state || ''
-    rep_params[:address_zip] = official.address.zip || ''
-    rep_params[:political_party] = official.party || ''
-    rep_params[:photo_url] = official.photoUrl || ''
+  def self.find_ocdid_and_title(rep_info, index)
+    rep_info.offices.each do |office|
+      return [office.division_id, office.name] if office.official_indices.include? index
+    end
+    ['', '']
+  end
+
+  def self.parse_civic_api_response(official, ocdid_temp, title_temp)
+    rep_params = {
+      name:            official.name,
+      political_party: official.party,
+      photo_url:       official.photo_url || '',
+      address_street:  '',
+      address_city:    '',
+      address_state:   '',
+      address_zip:     '',
+      ocdid:           ocdid_temp,
+      title:           title_temp
+    }
+    if official.address
+      rep_params[:address_street] = official.address[0].line1 || ''
+      rep_params[:address_city] = official.address[0].city || ''
+      rep_params[:address_state] = official.address[0].state || ''
+      rep_params[:address_zip] = official.address[0].zip || ''
+    end
     rep_params
   end
 end
