@@ -15,7 +15,6 @@ $(document).ready(() => {
             .attr('d', mapAssets.path)
             .attr('data-county-name', (d) => stateMap.counties[d.properties.COUNTYFP].name)
             .attr('data-county-fips-code', (d) => d.properties.COUNTYFP);
-            //.attr('data-state-symbol', (d) => d.properties.STUSPS);
 
         stateMapUtils.setupEventHandlers(stateMap);
     });

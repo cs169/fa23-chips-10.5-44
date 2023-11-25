@@ -68,5 +68,3 @@ exports.setupEventHandlers = (stateMap) => {
     };
     mapUtils.handleMapMouseEvents(targets, hoverHtmlProvider, clickCallback);
 };
-
-        
