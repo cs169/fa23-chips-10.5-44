@@ -149,6 +149,9 @@ GEM
     erubis (2.7.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faker (2.22.0)
       i18n (>= 1.8.11, < 2)
     faraday (1.8.0)
@@ -527,6 +530,7 @@ DEPENDENCIES
   database_cleaner
   date_validator
   factory_bot
+  factory_bot_rails
   google-api-client (~> 0.34)
   guard
   guard-cucumber

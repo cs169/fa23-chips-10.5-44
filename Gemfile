@@ -79,6 +79,7 @@ group :development, :test, :linters do
   # Linters and static analysis.
   gem 'haml-lint', require: false
   # Tool to run all the linters
+  gem 'factory_bot_rails'
   gem 'pronto', require: false
   gem 'pronto-flay', require: false
   gem 'pronto-haml', require: false
