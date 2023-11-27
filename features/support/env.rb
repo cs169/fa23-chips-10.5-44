@@ -19,6 +19,7 @@ if ENV['CI']
 end
 
 require 'cucumber/rails'
+require_relative 'helper'
 
 # frozen_string_literal: true
 

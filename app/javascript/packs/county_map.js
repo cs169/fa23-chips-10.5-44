@@ -22,6 +22,5 @@ $(document).ready(() => {
             .attr('data-county-fips-code', (d) => d.properties.COUNTYFP);
 
         // We dont want to enable clicking in the county view.
-        // stateMapUtils.setupEventHandlers(stateMap);
     });
 });
