@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_29_230553) do
+ActiveRecord::Schema.define(version: 2023_11_30_110949) do
 
   create_table "counties", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,17 @@ ActiveRecord::Schema.define(version: 2023_11_29_230553) do
     t.float "lat_max", null: false
     t.float "long_min", null: false
     t.float "long_max", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "temp_news_items", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "link", null: false
+    t.text "description"
+    t.integer "representative_id", null: false
+    t.integer "news_list_index", null: false
+    t.string "issue"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

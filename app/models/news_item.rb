@@ -18,8 +18,19 @@ Neutrality", 'Religious Freedom', 'Border Security', 'Minimum Wage',
      'Equal Pay']
   end
 
-  def self.news_api_to_top_5_news(result)
+  def self.news_api_to_top_5_news(news_articles, issue, rep_id)
     news = []
-    
+    news_articles.each do |article|
+      article_params = {
+        title:             article.title,
+        link:              article.url,
+        description:       article.description,
+        issue:             issue,
+        representative_id: rep_id
+      }
+      curr_article = NewsItem.new(article_params)
+      news.push(curr_article)
+    end
+    news
   end
 end
