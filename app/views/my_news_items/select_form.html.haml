@@ -1,0 +1,39 @@
+.row.mt-2
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        %h1.text-center Edit news article
+        %p
+            Representative: #{@representative.name}
+        %p
+            Issue: #{@issue}
+
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        %h2 Select an article:
+        = form_for @news_item, url: representative_new_my_news_item_path, html: { method: :post } do |f|
+            - if news_item.errors.any?
+                .alert.alert-danger
+                    %h2
+                        "#{pluralize(news_item.errors.count, 'error')} prohibited this news from being saved:"
+                    %ul
+                        - news_item.errors.full_messages.each do |message|
+                            %li= message
+            .form-group.row
+                .col-sm-2
+                    = label :news_item, :representative_id, class: 'col-form-label'
+                .col-sm-8.offset-sm-1
+                    = select :news_item, :representative_id, representatives_list, { include_blank: true },
+                    class: 'form-control'
+            .form-group.row
+                .col-sm-2
+                    = label :news_item, :issue, class: 'col-form-label'
+                .col-sm-8.offset-sm-1
+                    = select :news_item, :rating, issues_list, { include_blank: true },
+                    class: 'form-control'
+            .actions
+                = f.submit 'Search', class: 'btn btn-primary'
+
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        .clearfix.mt-3
+            .float-right
+                = link_to representative_news_items_path(@representative), class: 'mx-1 btn btn-info' do
+                    View all news articles
+                    %i.fas.fa-arrow-right

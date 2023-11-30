@@ -17,4 +17,9 @@ Medicare", 'Abortion', 'Student Loans', 'Gun Control', 'Unemployment',
 Neutrality", 'Religious Freedom', 'Border Security', 'Minimum Wage',
      'Equal Pay']
   end
+
+  def self.news_api_to_top_5_news(result)
+    news = []
+    
+  end
 end

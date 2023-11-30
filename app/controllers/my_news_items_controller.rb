@@ -12,6 +12,16 @@ class MyNewsItemsController < SessionController
 
   def edit; end
 
+  def select_news
+    @issue = params[:news_item][:issue]
+    @news_item = NewsItem.new
+    service = Google::Apis::NewsV2::NewsService.new
+    service.key = Rails.application.credentials[:GOOGLE_API_KEY]
+    result = service.representative_info_by_address(address: address)
+    @news_list = NewsItems.news_api_to_top_5_news(result)
+    render :select_form
+  end
+
   def create
     @news_item = NewsItem.new(news_item_params)
     if @news_item.save
