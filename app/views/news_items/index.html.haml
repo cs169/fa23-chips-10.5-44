@@ -20,6 +20,7 @@
                             %th #
                             %th Name
                             %th Description
+                            %th Issue
                             %th Posted
                             %th{ colspan: 3 } Links
                     %tbody
@@ -32,6 +33,7 @@
                                         &nbsp;
                                         %i.fas.fa-external-link-alt
                                 %td= item.description
+                                %td= item.issue.presence || ''
                                 %td
                                     %time.timeago{ datetime: item.created_at.iso8601 }
                                 %td
