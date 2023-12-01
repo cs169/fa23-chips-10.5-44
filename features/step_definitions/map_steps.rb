@@ -15,6 +15,13 @@ end
 Then(/^the table should expand$/) do
   expect(find('button[data-target="#actionmap-state-details-collapse"]')['aria-expanded']).to eq(nil)
 end
-# Given(/^I am on the representative page for "(.*)"$/)
-#   visit "/search/"
-# end
+
+Given(/^I am on the representatives page for "(.*)" in "(.*)"$/) do |county, state|
+  encoded_location = CGI.escape("#{county}, #{state}")
+  path = "/search/#{encoded_location}"
+  visit path
+end
+
+Then(/^I can see the representatives table$/) do
+  expect(page).to have_css('#events')
+end

@@ -9,5 +9,5 @@ Feature: County Representative Display
     Then the table should expand
   
   Scenario: Checking County Representatives
-    Given I am on the representative page for "Orange County"
-    Then I can see the represe table
+    Given I am on the representatives page for "Orange County" in "CA"
+    Then I can see the representatives table
