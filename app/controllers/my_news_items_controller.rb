@@ -6,6 +6,7 @@ class MyNewsItemsController < SessionController
   before_action :set_representative
   before_action :set_representatives_list
   before_action :set_issues_list
+  before_action :set_ratings_list
   before_action :set_news_item, only: %i[edit update destroy]
 
   # renders the select representative + issue search view
@@ -34,7 +35,8 @@ class MyNewsItemsController < SessionController
       link:              temp_news_item.link,
       description:       temp_news_item.description,
       representative_id: temp_news_item.representative_id,
-      issue:             temp_news_item.issue
+      issue:             temp_news_item.issue,
+      rating:            params[:news_item][:rating]
     }
     @news_item = NewsItem.new(temp_news_items_params)
     Rails.logger.debug @news_item
@@ -76,6 +78,10 @@ class MyNewsItemsController < SessionController
 
   def set_issues_list
     @issues_list = NewsItem.all_issues
+  end
+
+  def set_ratings_list
+    @ratings_list = NewsItem.all_ratings
   end
 
   def set_news_item

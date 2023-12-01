@@ -25,6 +25,14 @@
                             %dt.col-sm-3.text-md-right Description:
                             %dt.col-sm-9
                                 = news.description
+            .form-group.row
+                .col-sm-2
+                    = label :news_item, :rating, class: 'col-form-label'
+                .col-sm-10
+                    = select :news_item, :rating, @ratings_list, { include_blank: true },
+                    class: 'form-control'
+                .col-sm-10
+                    %em (1 - bad, 3 - neutral, 5 - good)
             = submit_tag 'Save', class: 'btn btn-primary'
 
     .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4

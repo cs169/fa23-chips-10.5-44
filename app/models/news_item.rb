@@ -18,6 +18,10 @@ Neutrality", 'Religious Freedom', 'Border Security', 'Minimum Wage',
      'Equal Pay']
   end
 
+  def self.all_ratings
+    %w[1 2 3 4 5]
+  end
+
   def self.news_api_to_top_5_news(news_articles, issue, rep_id)
     news = []
     news_articles.each do |article|
