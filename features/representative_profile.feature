@@ -15,3 +15,5 @@ Scenario: Show the representative view
  # And I should see "mock_state"
  # And I should see "mock_zip"
  # And I should see "mock_party"
+
+ #the and stuff may not be right but you get the idea...
