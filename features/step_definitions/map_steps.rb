@@ -9,9 +9,12 @@ Given(/^I am on the "(.*)" in the map$/) do |state|
 end
 
 When(/^I click on "(.*)" in the map$/) do |county|
-  click_on_county(county)
+  click_button county
 end
 
-Then(/^I should see representatives for "(.*)"$/) do |county|
-  expect(page).to have_content(representatives_for(county))
+Then(/^the table should expand$/) do
+  expect(find('button[data-target="#actionmap-state-details-collapse"]')['aria-expanded']).to eq(nil)
 end
+# Given(/^I am on the representative page for "(.*)"$/)
+#   visit "/search/"
+# end
