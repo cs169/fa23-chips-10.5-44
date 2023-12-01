@@ -8,10 +8,9 @@ political events in their area as well as aggregate, share and view news items i
 </div>
 
 <!-- TODO: Update these for your repo! -->
+[![All Specs](https://github.com/cs169/fa23-chips-10.5-44/actions/workflows/specs.yml/badge.svg)](https://github.com/cs169/fa23-chips-10.5-44/actions) 
 
-[![All Specs](https://github.com/saasbook/hw-agile-iterations/actions/workflows/specs.yml/badge.svg)](https://github.com/saasbook/hw-agile-iterations/actions/workflows/specs.yml)
-
-[![codecov](https://codecov.io/gh/saasbook/hw-agile-iterations/branch/master/graph/badge.svg?token=SGYCvQX4Us)](https://codecov.io/gh/saasbook/hw-agile-iterations)
+[![codecov](https://codecov.io/github/cs169/fa23-chips-10.5-44/graph/badge.svg?token=qRpZnZN3QQ)](https://codecov.io/github/cs169/fa23-chips-10.5-44/tree/master)
 
 ![](https://github.com///actions/workflows//badge.svg)
 
