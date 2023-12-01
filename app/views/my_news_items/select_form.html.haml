@@ -1,0 +1,43 @@
+.row.mt-2
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        %h1.text-center Edit news article
+        %p
+            Representative: #{@representative.name}
+        %p
+            Issue: #{@issue}
+
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        %h2 Select an article:
+        = form_tag representative_new_my_news_item_path, method: :post do
+            - @news_list.each_with_index do |news, index|
+                .news-item
+                    = radio_button_tag :selected_news_index, index
+                    .card
+                        %dl.row
+                            %dt.col-sm-3.text-md-right Title:
+                            %dt.col-sm-9
+                                = news.title
+                        %dl.row
+                            %dt.col-sm-3.text-md-right Link:
+                            %dt.col-sm-9
+                                %a{ href: news.link, target: '_blank' }= news.link
+                        %dl.row
+                            %dt.col-sm-3.text-md-right Description:
+                            %dt.col-sm-9
+                                = news.description
+            .form-group.row
+                .col-sm-2
+                    = label :news_item, :rating, class: 'col-form-label'
+                .col-sm-10
+                    = select :news_item, :rating, @ratings_list, { include_blank: true },
+                    class: 'form-control'
+                .col-sm-10
+                    %em (1 - bad, 3 - neutral, 5 - good)
+            = submit_tag 'Save', class: 'btn btn-primary'
+
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        .clearfix.mt-3
+            .float-right
+                = link_to representative_news_items_path(@representative), class: 'mx-1 btn btn-info' do
+                    View all news articles
+                    %i.fas.fa-arrow-right
