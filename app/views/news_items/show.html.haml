@@ -15,7 +15,11 @@
                 %dl.row
                     %dt.col-sm-3.text-md-right Issue:
                     %dt.col-sm-9
-                        = @news_item.issue.presence || ''
+                        = @news_item.issue.presence || 'No issue assigned'
+                %dl.row
+                    %dt.col-sm-3.text-md-right Rating:
+                    %dt.col-sm-9
+                        = @news_item.rating.presence || 'No rating assigned'
                 %dl.row
                     %dt.col-sm-3.text-md-right Representative:
                     %dt.col-sm-9

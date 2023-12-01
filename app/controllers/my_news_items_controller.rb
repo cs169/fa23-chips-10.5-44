@@ -1,20 +1,47 @@
 # frozen_string_literal: true
 
+require 'news-api'
+
 class MyNewsItemsController < SessionController
   before_action :set_representative
   before_action :set_representatives_list
   before_action :set_issues_list
+  before_action :set_ratings_list
   before_action :set_news_item, only: %i[edit update destroy]
 
+  # renders the select representative + issue search view
   def new
     @news_item = NewsItem.new
   end
 
   def edit; end
 
+  # renders the select news article view to add to database
+  def select_news
+    @issue = params[:news_item][:issue]
+    news_service = News.new(Rails.application.credentials[:GOOGLE_NEWS_API_KEY])
+    result = news_service.get_everything(q: "#{@issue} AND #{@representative.name}", language: 'en',
+                                         sortBy: 'relevancy', pageSize: 5)
+    @news_list = NewsItem.news_api_to_top_5_news(result, @issue, @representative.id)
+    TempNewsItem.copy_news_list(@news_list)
+    render :select_form
+  end
+
   def create
-    @news_item = NewsItem.new(news_item_params)
+    selected_news_index = params[:selected_news_index].to_i
+    temp_news_item = TempNewsItem.find_by(news_list_index: selected_news_index)
+    temp_news_items_params = {
+      title:             temp_news_item.title,
+      link:              temp_news_item.link,
+      description:       temp_news_item.description,
+      representative_id: temp_news_item.representative_id,
+      issue:             temp_news_item.issue,
+      rating:            params[:news_item][:rating]
+    }
+    @news_item = NewsItem.new(temp_news_items_params)
+    Rails.logger.debug @news_item
     if @news_item.save
+      TempNewsItem.destroy_all
       redirect_to representative_news_item_path(@representative, @news_item),
                   notice: 'News item was successfully created.'
     else
@@ -51,6 +78,10 @@ class MyNewsItemsController < SessionController
 
   def set_issues_list
     @issues_list = NewsItem.all_issues
+  end
+
+  def set_ratings_list
+    @ratings_list = NewsItem.all_ratings
   end
 
   def set_news_item

@@ -1,0 +1,22 @@
+= form_for news_item, url: form_url, html: { method: form_method } do |f|
+    - if news_item.errors.any?
+        .alert.alert-danger
+            %h2
+                "#{pluralize(news_item.errors.count, 'error')} prohibited this news from being saved:"
+            %ul
+                - news_item.errors.full_messages.each do |message|
+                    %li= message
+    .form-group.row
+        .col-sm-2
+            = label :news_item, :representative_id, class: 'col-form-label'
+        .col-sm-8.offset-sm-1
+            = select :news_item, :representative_id, representatives_list, { include_blank: true },
+            class: 'form-control'
+    .form-group.row
+        .col-sm-2
+            = label :news_item, :issue, class: 'col-form-label'
+        .col-sm-8.offset-sm-1
+            = select :news_item, :issue, issues_list, { include_blank: true },
+            class: 'form-control'
+    .actions
+        = f.submit 'Search', class: 'btn btn-primary'
