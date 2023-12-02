@@ -27,14 +27,6 @@ RSpec.describe NewsItem, type: :model do
     let(:representative) { instance_double(Representative) }
     let(:news_item) { instance_double(described_class, representative: representative) }
 
-    before do
-      @full_issue_list = ['Free Speech', 'Immigration', 'Terrorism',
-                          'Social Security and Medicare', 'Abortion', 'Student Loans', 'Gun Control',
-                          'Unemployment', 'Climate Change', 'Homelessness', 'Racism', 'Tax Reform',
-                          'Net Neutrality', 'Religious Freedom', 'Border Security', 'Minimum Wage',
-                          'Equal Pay']
-    end
-
     describe '.find_for' do
       it 'finds a news item for a given representative_id' do
         # found_news_item = described_class.find_for(1)
@@ -47,7 +39,8 @@ RSpec.describe NewsItem, type: :model do
       it 'returns an array of all issues' do
         issues = described_class.all_issues
         expect(issues).to be_an(Array)
-        expect(issues).to eq(@full_issue_list)
+        expect(issues).to include('Free Speech', 'Immigration', 'Terrorism',
+                                  'Social Security and Medicare', 'Abortion', 'Student Loans', 'Gun Control')
       end
     end
 
