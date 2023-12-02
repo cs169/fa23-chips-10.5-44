@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # See: https://github.com/codecov/example-ruby
-
+require 'factory_bot'
 require 'simplecov'
 SimpleCov.start 'rails' do
   add_filter 'lib'

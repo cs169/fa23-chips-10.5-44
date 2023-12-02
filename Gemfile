@@ -55,6 +55,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'sqlite3'
+  gem 'webmock'
 
   # Guard Plugins
   gem 'guard'
