@@ -6,9 +6,9 @@ require 'rails_helper'
 RSpec.describe Representative, type: :model do
   describe '.civic_api_to_representative_params' do
     let(:rep_info) do
-      double('RepInfo',
-             officials: [official],
-             offices:   [office])
+      instance_double(Google::Apis::CivicinfoV2::RepresentativeInfoResponse,
+                      officials: [official],
+                      offices:   [office])
     end
     let(:official) do
       double('Official',
@@ -25,10 +25,10 @@ RSpec.describe Representative, type: :model do
              zip:   '20515')
     end
     let(:office) do
-      double('Office',
-             division_id:      'ocd-division/country:us/state:ca/cd:17',
-             name:             'U.S. Representative',
-             official_indices: [0])
+      instance_double(Google::Apis::CivicinfoV2::Office,
+                      division_id:      'ocd-division/country:us/state:ca/cd:17',
+                      name:             'U.S. Representative',
+                      official_indices: [0])
     end
 
     context 'when the representative does not exist' do
@@ -50,7 +50,7 @@ RSpec.describe Representative, type: :model do
     context 'when the representative already exists' do
       before do
         described_class.create!(name: 'Ro Khanna', ocdid: 'ocd-division/country:us/state:ca/cd:17',
-                                title: 'U.S. Representative')
+                                title: 'U.S. Representative', political_party: 'Democratic Party', address_street: '306 Cannon House Office Building', address_city: 'Washington', address_state: 'DC', address_zip: '20515', photo_url: 'https://khanna.house.gov/sites/khanna.house.gov/files/styles/congress_image_thumbnail/public/featured_image/RepRoKhanna_CA17_hires.jpg?itok=Rb-0G6Ky')
       end
 
       it 'does not create a new representative' do
