@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'webmock/rspec'
 require 'spec_helper'
 
 RSpec.describe 'rubocop analysis' do
