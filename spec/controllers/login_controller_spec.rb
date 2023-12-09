@@ -22,10 +22,6 @@ RSpec.describe LoginController, type: :controller do
       it 'does not set the session current user id' do
         post :google_oauth2
         expect(session[:current_user_id]).to be_nil
-      end
-
-      it 'redirects to login path' do
-        post :google_oauth2
         expect(response).to redirect_to(login_path)
       end
     end
@@ -34,10 +30,6 @@ RSpec.describe LoginController, type: :controller do
       it 'does not set the session current user id' do
         post :github
         expect(session[:current_user_id]).to be_nil
-      end
-
-      it 'redirects to login path' do
-        post :github
         expect(response).to redirect_to(login_path)
       end
     end
