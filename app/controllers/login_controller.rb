@@ -23,6 +23,8 @@ class LoginController < ApplicationController
   def create_session(create_if_not_exists)
     user_info = request.env['omniauth.auth']
     user = find_or_create_user(user_info, create_if_not_exists)
+    return redirect_to login_path, alert: 'Authentication failed.' if user.nil?
+
     session[:current_user_id] = user.id
     destination_url = session[:destination_after_login] || root_url
     session[:destination_after_login] = nil
@@ -30,6 +32,8 @@ class LoginController < ApplicationController
   end
 
   def find_or_create_user(user_info, create_if_not_exists)
+    return nil if user_info.nil?
+
     provider_sym = user_info['provider'].to_sym
     user = User.find_by(
       provider: User.providers[provider_sym],
@@ -51,14 +55,8 @@ class LoginController < ApplicationController
   end
 
   def create_github_user(user_info)
-    # Unfortunately, Github doesn't provide first_name, last_name as separate entries.
-    name = user_info['info']['name']
-    if name.nil?
-      first_name = 'Anon'
-      last_name = 'User'
-    else
-      first_name, last_name = user_info['info']['name'].strip.split(/\s+/, 2)
-    end
+    name = user_info['info']['name'] || 'Anon User'
+    first_name, last_name = name.strip.split(/\s+/, 2)
     User.create(
       uid:        user_info['uid'],
       provider:   User.providers[:github],
