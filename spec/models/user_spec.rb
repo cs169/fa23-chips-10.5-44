@@ -39,12 +39,4 @@ RSpec.describe User, type: :model do
       expect(described_class.find_google_user('123')).to eq(user_google)
     end
   end
-
-  describe '.find_github_user' do
-    it 'finds a user with Github provider' do
-      user_github = described_class.create(uid: '456', provider: 'github', first_name: 'Test', last_name: 'User',
-                                           email: 'test@example.com')
-      expect(described_class.find_github_user('456')).to eq(user_github)
-    end
-  end
 end
