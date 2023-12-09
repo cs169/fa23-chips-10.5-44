@@ -9,7 +9,7 @@ ruby '2.6.6' # Make sure that this matches .ruby-version file.
 gem 'rails', '5.2.8.1'
 # Use Puma as the app server
 gem 'puma'
-
+gem 'shoulda-matchers', '~> 4.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 # Note: Pin the webpacker version to the same version used in package.json
 gem 'webpacker', '5.1.1'
