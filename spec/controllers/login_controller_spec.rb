@@ -14,26 +14,20 @@ RSpec.describe LoginController, type: :controller do
   end
 
   describe 'POST #google_oauth2' do
-    context 'with invalid credentials' do
-      before do
+    context 'with invalid credentials (google_oauth2)' do
+      it 'does not set the session current user id' do
         request.env['omniauth.auth'] = nil # Simulate invalid credentials
         post :google_oauth2
-      end
-
-      it 'does not set the session current user id' do
         expect(session[:current_user_id]).to be_nil
       end
     end
   end
 
   describe 'POST #github' do
-    context 'with invalid credentials' do
-      before do
+    context 'with invalid credentials (github)' do
+      it 'does not set the session current user id' do
         request.env['omniauth.auth'] = nil # Simulate invalid credentials
         post :github
-      end
-
-      it 'does not set the session current user id' do
         expect(session[:current_user_id]).to be_nil
       end
     end
