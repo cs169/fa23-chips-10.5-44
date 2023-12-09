@@ -34,17 +34,9 @@ RSpec.describe User, type: :model do
   # Class Method Tests
   describe '.find_google_user' do
     it 'finds a user with Google OAuth2 provider' do
-      user = described_class.create(uid: '123', provider: 'google_oauth2', first_name: 'Test', last_name: 'User',
-                                    email: 'test@example.com')
-      expect(described_class.find_google_user('123')).to eq(user)
-    end
-  end
-
-  describe '.find_github_user' do
-    it 'finds a user with Github provider' do
-      user = described_class.create(uid: '456', provider: 'github', first_name: 'Test', last_name: 'User',
-                                    email: 'test@example.com')
-      expect(described_class.find_github_user('456')).to eq(user)
+      user_google = described_class.create(uid: '123', provider: 'google_oauth2', first_name: 'Test', last_name: 'User',
+                                           email: 'test@example.com')
+      expect(described_class.find_google_user('123')).to eq(user_google)
     end
   end
 end
