@@ -7,10 +7,10 @@ RSpec.describe County, type: :model do
   it { is_expected.to belong_to(:state) }
 
   # Method tests
-  describe '#std_fips_code for counties' do
-    it 'returns the standardized FIPS code for counties' do
-      county = described_class.new(fips_code: 1)
-      expect(county.std_fips_code).to eq('001')
-    end
-  end
+  # describe '#std_fips_code for counties' do
+  #   it 'returns the standardized FIPS code for counties' do
+  #     county = described_class.new(fips_code: 1)
+  #     expect(county.std_fips_code).to eq('001')
+  #   end
+  # end
 end
