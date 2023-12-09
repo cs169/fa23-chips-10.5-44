@@ -9,7 +9,7 @@ Given(/^I am on the "(.*)" in the map$/) do |state|
 end
 
 When(/^I click on "(.*)" in the map$/) do |county|
-  click_button county
+  find_button(county).click
 end
 
 Then(/^the table should expand$/) do
